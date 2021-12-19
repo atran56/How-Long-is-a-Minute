@@ -13,7 +13,7 @@ router.get('/', async (req, res, next) => {
 
 router.get('/:intervalId', async (req, res, next) => {
     try {
-        const stats = Statistic.findByIntervalId(req.params.intervalId);
+        const stats = await Statistic.findByIntervalId(req.params.intervalId);
         res.status(200).send(stats);
     }
     catch (error) {
