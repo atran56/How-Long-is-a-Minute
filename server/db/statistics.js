@@ -10,6 +10,8 @@ const Statistic = mongoose.model(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Interval"
     }
+  }, {
+    versionKey: false 
   })
 );
 

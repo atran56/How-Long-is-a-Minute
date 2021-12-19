@@ -4,6 +4,8 @@ const Interval = mongoose.model(
   "Interval",
   new mongoose.Schema({
     time: Number
+  }, {
+    versionKey: false 
   })
 );
 
