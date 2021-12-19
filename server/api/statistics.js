@@ -1,20 +1,20 @@
 const router = require('express').Router()
-const {Statistic} = require('../db')
-
-router.get('/', async (req, res, next) => {
-    try {
-        const stats = await Statistic.findAll()
-        res.send(stats)
-    }
-    catch (error) {
-        next(error)
-    }
-})
+const {Statistic, Interval} = require('../db')
 
 router.post('/', async (req, res, next) => {
     try {
-        
-        const newStat = await Statistic.create({interval: req.body.interval, guess: req.body.guess, count: count++})
+        const intervals = await Interval.find()
+        intervals.forEach(async interval => {
+            const guess = req.body.guess - (req.body.guess % interval);
+            const stat = await Statistic.findByGuess(interval.id, guess);
+            if(stat) {
+                stat.count++;
+                await stat.save;
+            }
+            else {
+                await Statistic.create({guess: guess, count: 1, interval: interval.id})
+            }
+        })
         res.status(201).send()
     }
     catch (error) {
