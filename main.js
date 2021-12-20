@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const app = require('./server')
-const PORT = 1337
+const PORT = process.env.PORT || 1337;
 
 main().catch(err => console.log(err));
 

@@ -13,8 +13,9 @@ class Root extends React.Component {
         return (
             <Router>
                 <div>
-                    <main />
+                    <main>
                     <Route exact path="/" component={Track} />
+                    </main>
                 </div>
             </Router>
         )
