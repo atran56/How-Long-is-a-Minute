@@ -27,11 +27,16 @@ class Track extends React.Component {
         }
     }
     render () {
+        let button;
+        if(this.state.startTime === null) {
+            button = <Button color="primary" onClick={this.handleStart}>Start</Button>
+        }
+        else {
+            button = <Button color="danger" onClick={this.handleStop}>Stop</Button>
+        }
         return (
         <Container>
-                {!this.state.startTime ? <Button color="primary" onClick={this.handleStart}>Start</Button>
-                : <Button color="danger" onClick={this.handleStop}>Stop</Button>}
-                {this.state.secGuess ? <Results guess={this.state.secGuess}/> : null}
+            {!this.state.secGuess ? button : <Results guess={this.state.secGuess}/>}
         </Container>
         )
     }
