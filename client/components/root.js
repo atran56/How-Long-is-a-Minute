@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {
     BrowserRouter as Router,
     Link,
     Route,
-    Switch
+    Routes
 } from 'react-router-dom';
 import Track from './Track';
 
@@ -14,7 +14,9 @@ class Root extends React.Component {
             <Router>
                 <div>
                     <main>
-                    <Route exact path="/" component={Track} />
+                        <Routes>
+                            <Route exact path="/" element={<Track />} />
+                        </Routes>
                     </main>
                 </div>
             </Router>
