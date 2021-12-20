@@ -1,12 +1,19 @@
 import React, { Component } from "react";
-import { Button } from 'reactstrap';
+import { Button, Container } from 'reactstrap';
 
 class Track extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            
+        }
+    }
 render () {
     return (
-    <div>
-        <h1>hi</h1>
-    </div>
+    <Container>
+            <Button color="primary">Start</Button>
+            <Button color="danger">Stop</Button>
+    </Container>
     )
 }
 }
