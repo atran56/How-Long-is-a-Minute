@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import c3 from "c3";
+import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 
 const Graph = () => {
     React.useEffect(() => {
@@ -21,8 +22,23 @@ const Graph = () => {
         }
     });
     }, []);
-
-    return <div id="chart" />;
+    
+    return (
+    <div>
+        <div id="chart" />
+        <Dropdown>
+        <DropdownToggle caret>
+            Dropdown
+        </DropdownToggle>
+        <DropdownMenu>
+            <DropdownItem header>Header</DropdownItem>
+            <DropdownItem disabled>Action</DropdownItem>
+            <DropdownItem>Another Action</DropdownItem>
+            <DropdownItem divider />
+            <DropdownItem>Another Action</DropdownItem>
+        </DropdownMenu>
+        </Dropdown>
+    </div>)
 };
 
 export default Graph;
