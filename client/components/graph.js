@@ -22,14 +22,14 @@ class Graph extends React.Component {
     async handleChange(event) {
         const interval = event.target.id;
         const stats = await axios.get(`/api/intervals/${interval}`)
-        this.setState({stats: stats.data, selectedInterval: event.target.textContent});
+        const sortedStats = stats.data.sort((a, b) => parseFloat(a.guess) - parseFloat(b.guess));
+        this.setState({stats: sortedStats, selectedInterval: event.target.textContent});
         this.forceUpdate()
-        console.log(this.state)
     }
     render() {
         return (
             <div>
-                <Chart />
+                <Chart stats={this.state.stats}/>
                 <DropDown dropdownText={this.state.selectedInterval} handleChange={this.handleChange} intervals={this.state.intervals}/>
                 
                 
