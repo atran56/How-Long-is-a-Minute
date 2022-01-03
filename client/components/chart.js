@@ -3,20 +3,24 @@ import c3 from "c3";
 
 const Chart = (props) => {
     const stats = props.stats;
-    const dataStats = [];
+    const countStats = [];
+    const guessStats = [];
     stats.forEach(stat => {
-        dataStats.push(stat.count)
+        countStats.push(stat.count)
+        guessStats.push(stat.guess)
     });
     var chart = c3.generate({
         bindto: "#chart",
         data: {
             columns: [
-                ['Guess'].concat(dataStats)
+                ['Guess'].concat(countStats)
             ],
             type: 'bar'
         },
         axis: {
             x: {
+                type: 'category',
+                categories: guessStats,
                 label: {
                     text: 'Miliseconds',
                     position: 'outer-middle'
