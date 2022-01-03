@@ -15,6 +15,20 @@ const Chart = (props) => {
             ],
             type: 'bar'
         },
+        axis: {
+            x: {
+                label: {
+                    text: 'Miliseconds',
+                    position: 'outer-middle'
+                }
+            },
+            y: {
+                label: {
+                    text: 'Frequency',
+                    position: 'outer-middle'
+                }
+            }
+        },
         bar: {
             width: {
                 ratio: 0.5 // this makes bar width 50% of length between ticks
