@@ -1,46 +1,34 @@
 import React, { Component } from "react";
-import c3 from "c3";
-import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import axios from "axios";
 import { render } from "react-dom";
+import Chart from "./chart";
+import DropDown from "./dropdown";
 
 class Graph extends React.Component {
     constructor(props) {
         super(props)
+        this.state = {
+            intervals: [],
+            selectedInterval: null,
+            stats: [],
+        };
+        this.handleChange = this.handleChange.bind(this)
     }
-    componentDidMount() {
-        c3.generate({
-        bindto: "#chart",
-        data: {
-            columns: [
-            ["Guess", 30, 200, 100, 400, 150, 250]
-            ],
-            type: "bar",
-        },
-        axis: {
-            y: {
-                label: {
-                    text: 'Frequency',
-                    position: 'outer-middle'
-                }
-            }
-        }
-    }), []}
+    async componentDidMount() {
+        const resp = await axios.get('/api/intervals')
+        const intervals = resp.data
+        this.setState({intervals: intervals})
+    }
+    async handleChange(event) {
+        
+    }
     render() {
         return (
             <div>
-                <div id="chart" />
-                <Dropdown>
-                <DropdownToggle caret>
-                    Dropdown
-                </DropdownToggle>
-                <DropdownMenu>
-                    <DropdownItem header>Header</DropdownItem>
-                    <DropdownItem disabled>Action</DropdownItem>
-                    <DropdownItem>Another Action</DropdownItem>
-                    <DropdownItem divider />
-                    <DropdownItem>Another Action</DropdownItem>
-                </DropdownMenu>
-                </Dropdown>
+                <Chart />
+                <DropDown handleChange={this.handleChange} intervals={this.state.intervals}/>
+                
+                
             </div>)
     }
 }
