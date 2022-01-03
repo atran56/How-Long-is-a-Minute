@@ -9,7 +9,7 @@ class Graph extends React.Component {
         super(props)
         this.state = {
             intervals: [],
-            selectedInterval: null,
+            selectedInterval: "Select Interval",
             stats: [],
         };
         this.handleChange = this.handleChange.bind(this)
@@ -20,13 +20,17 @@ class Graph extends React.Component {
         this.setState({intervals: intervals})
     }
     async handleChange(event) {
-        
+        const interval = event.target.id;
+        const stats = await axios.get(`/api/intervals/${interval}`)
+        this.setState({stats: stats.data, selectedInterval: event.target.textContent});
+        this.forceUpdate()
+        console.log(this.state)
     }
     render() {
         return (
             <div>
                 <Chart />
-                <DropDown handleChange={this.handleChange} intervals={this.state.intervals}/>
+                <DropDown dropdownText={this.state.selectedInterval} handleChange={this.handleChange} intervals={this.state.intervals}/>
                 
                 
             </div>)

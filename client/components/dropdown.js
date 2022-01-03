@@ -8,6 +8,7 @@ class DropDown extends React.Component {
             dropdownOpen: false
         }
         this.toggle = this.toggle.bind(this);
+        console.log(props);
     }
     toggle() {
         this.setState(prevState => ({
@@ -16,17 +17,18 @@ class DropDown extends React.Component {
     }
     render(){
         const intervals = this.props.intervals;
-        console.log(intervals)
+        const handleChange = this.props.handleChange;
+        const items = intervals.map(interval => {
+            return <DropdownItem key={interval.time} id={interval._id} onClick={handleChange}>{interval.time} millisecond(s)</DropdownItem>
+        })
         return (
             <div>
                 <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
                     <DropdownToggle caret>
-                            Select Interval
+                            {this.props.dropdownText}
                     </DropdownToggle>
                     <DropdownMenu>
-                        {intervals.map(interval => {
-                            return <DropdownItem key={interval._id}>{interval.time} millisecond(s)</DropdownItem>
-                        })}
+                        {items}
                     </DropdownMenu>
                 </Dropdown>
             </div>
