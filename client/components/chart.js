@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import c3 from "c3";
 
 const Chart = (props) => {
+    const guess = props.guess;
     const stats = props.stats;
     const countStats = [];
     const guessStats = [];
@@ -9,6 +10,7 @@ const Chart = (props) => {
         countStats.push(stat.count)
         guessStats.push(stat.guess)
     });
+    console.log(props)
     var chart = c3.generate({
         bindto: "#chart",
         data: {

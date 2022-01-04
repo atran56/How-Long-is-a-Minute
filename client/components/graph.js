@@ -9,7 +9,7 @@ class Graph extends React.Component {
         super(props)
         this.state = {
             intervals: [],
-            selectedInterval: "Select Interval",
+            selectedInterval: "Select Milisecond(s) Interval",
             stats: [],
         };
         this.handleChange = this.handleChange.bind(this)
@@ -27,12 +27,11 @@ class Graph extends React.Component {
         this.forceUpdate()
     }
     render() {
+        const guess = this.props.guess - (this.props.guess % this.state.selectedInterval)
         return (
             <div>
-                <Chart stats={this.state.stats}/>
+                <Chart guess={guess} stats={this.state.stats}/>
                 <DropDown dropdownText={this.state.selectedInterval} handleChange={this.handleChange} intervals={this.state.intervals}/>
-                
-                
             </div>)
     }
 }

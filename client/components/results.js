@@ -17,10 +17,10 @@ class Results extends React.Component {
         const guess = this.props.guess
         return (
             <Container>
-                    {!this.state.showGraph ? <div><h1>{guess} Seconds</h1>
+                    {!this.state.showGraph ? <div><h1>{guess} milliseconds</h1>
                     <Button color="primary" onClick={this.handleClick}>Compare your minute with other users</Button>
                     </div>
-                    : <Graph />}
+                    : <Graph guess={guess}/>}
                     
             </Container>
         )

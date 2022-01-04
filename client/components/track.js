@@ -20,7 +20,7 @@ class Track extends React.Component {
         try {
             const guess = Date.now() - this.state.startTime;
             await Axios.post('/api/statistics', {"guess": guess});
-            this.setState({secGuess: guess/1000})
+            this.setState({secGuess: guess})
         }
         catch (error) {
             console.log("something went wrong with handleStop:", error)

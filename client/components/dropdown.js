@@ -8,7 +8,6 @@ class DropDown extends React.Component {
             dropdownOpen: false
         }
         this.toggle = this.toggle.bind(this);
-        console.log(props);
     }
     toggle() {
         this.setState(prevState => ({
@@ -19,7 +18,7 @@ class DropDown extends React.Component {
         const intervals = this.props.intervals;
         const handleChange = this.props.handleChange;
         const items = intervals.map(interval => {
-            return <DropdownItem key={interval.time} id={interval._id} onClick={handleChange}>{interval.time} millisecond(s)</DropdownItem>
+            return <DropdownItem key={interval.time} id={interval._id} onClick={handleChange}>{interval.time}</DropdownItem>
         })
         return (
             <div>
