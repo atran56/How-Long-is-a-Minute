@@ -2,21 +2,32 @@ import React, { Component } from "react";
 import c3 from "c3";
 
 const Chart = (props) => {
-    const guess = props.guess;
+    const userGuess = props.guess;
     const stats = props.stats;
     const countStats = [];
     const guessStats = [];
+    let idx = 0;
+    let foundIdx = 0;
     stats.forEach(stat => {
         countStats.push(stat.count)
         guessStats.push(stat.guess)
+        if(stat.guess === userGuess) {
+            foundIdx = idx;
+        }
+        idx ++;
     });
-    console.log(props)
     var chart = c3.generate({
         bindto: "#chart",
         data: {
             columns: [
                 ['Guess'].concat(countStats)
             ],
+            colors: {
+                Guess: function(d) {
+                    return (d.index === foundIdx) ? '#00ff00': '#ff0000';
+                    
+                }
+            },
             type: 'bar'
         },
         axis: {
